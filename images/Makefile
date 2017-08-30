@@ -27,19 +27,19 @@ $(BOOTSTRAP_BINS):
 
 .PHONY: bootstrap
 bootstrap: $(BOOTSTRAP_BINS)
-	docker build -t $(BOOTSTRAP_TAG) $(PWD)/bootstrap
+	docker build --pull -t $(BOOTSTRAP_TAG) $(PWD)/bootstrap
 
 .PHONY: uninstall
 uninstall:
-	docker build -t $(UNINSTALL_TAG) $(PWD)/uninstall
+	docker build --pull -t $(UNINSTALL_TAG) $(PWD)/uninstall
 
 .PHONY: cassandra
 cassandra:
-	docker build -t $(CASSANDRA_TAG) $(PWD)/cassandra
+	docker build --pull -t $(CASSANDRA_TAG) $(PWD)/cassandra
 
 .PHONY: proxy
 proxy:
-	docker build -t $(PROXY_TAG) $(PWD)/proxy
+	docker build --pull -t $(PROXY_TAG) $(PWD)/proxy
 
 .PHONY: pithos
 pithos:
