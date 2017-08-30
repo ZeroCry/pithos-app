@@ -1,5 +1,7 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
 
 echo "Assuming changeset from the environment: $RIG_CHANGESET"
 # note that rig does not take explicit changeset ID
@@ -20,6 +22,8 @@ if [ $1 = "update" ]; then
 
     rig upsert -f /var/lib/gravity/resources/cassandra.yaml --debug
     rig upsert -f /var/lib/gravity/resources/pithos.yaml --debug
+    kubectl create -f /var/lib/gravity/resources/pithos-delete-backup-bucket.yaml
+
     echo "Checking status"
     rig status $RIG_CHANGESET --retry-attempts=120 --retry-period=1s --debug
     echo "Freezing"

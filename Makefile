@@ -10,14 +10,18 @@ CONTAINERS := pithos-bootstrap:$(VERSION) \
 	cassandra:$(VERSION) \
 	pithos:$(VERSION) \
 	pithos-proxy:$(VERSION) \
+	pithos-jobs:$(VERSION) \
 	pithos-hook:$(VERSION)
+
 
 IMPORT_IMAGE_FLAGS := --set-image=pithos-bootstrap:$(VERSION) \
 	--set-image=pithos-uninstall:$(VERSION) \
 	--set-image=cassandra:$(VERSION) \
 	--set-image=pithos:$(VERSION) \
 	--set-image=pithos-proxy:$(VERSION) \
+	--set-image=pithos-jobs:$(VERSION) \
 	--set-image=pithos-hook:$(VERSION)
+
 
 IMPORT_OPTIONS := --vendor \
 		--ops-url=$(OPS_URL) \

@@ -5,18 +5,20 @@ UNINSTALL_TAG := pithos-uninstall:$(VERSION)
 PITHOS_TAG := pithos:$(VERSION)
 CASSANDRA_TAG := cassandra:$(VERSION)
 PROXY_TAG := pithos-proxy:$(VERSION)
+JOBS_TAG := pithos-jobs:$(VERSION)
 HOOK_TAG := pithos-hook:$(VERSION)
 
 .PHONY: all
 all: images
 
 .PHONY: images
-images: bootstrap uninstall cassandra pithos proxy hook
+images: bootstrap uninstall cassandra pithos proxy jobs hook
 	docker tag $(BOOTSTRAP_TAG) pithos-bootstrap:latest
 	docker tag $(UNINSTALL_TAG) pithos-uninstall:latest
 	docker tag $(PITHOS_TAG) pithos:latest
 	docker tag $(CASSANDRA_TAG) cassandra:latest
 	docker tag $(PROXY_TAG) pithos-proxy:latest
+	docker tag $(JOBS_TAG) pithos-jobs:latest
 	docker tag $(HOOK_TAG) pithos-hook:latest
 
 BOOTSTRAP_BINS := bootstrap/bin
@@ -40,6 +42,10 @@ cassandra:
 .PHONY: proxy
 proxy:
 	docker build --pull -t $(PROXY_TAG) $(PWD)/proxy
+
+.PHONY: jobs
+jobs:
+	docker build --pull -t $(JOBS_TAG) $(PWD)/jobs
 
 .PHONY: pithos
 pithos:
